@@ -1,0 +1,38 @@
+#include <stdio.h>
+voidprintBinary(int n, inti)
+{
+int k;
+for (k = i - 1; k >= 0; k--) {
+if ((n >> k) & 1)
+printf("1");
+else
+printf("0");
+ }
+}
+typedef union {
+float f;
+struct
+ {
+unsignedint mantissa : 23;
+unsignedint exponent : 8;
+unsignedint sign : 1;
+ } raw;
+} myfloat;
+voidprintIEEE(myfloatvar)
+{
+printf("%d | ", var.raw.sign);
+printBinary(var.raw.exponent, 8);
+printf(" | ");
+printBinary(var.raw.mantissa, 23);
+printf("\n");
+}
+int main()
+{
+myfloatvar;
+var.f = 1259.125;
+printf("IEEE 754 representation of %f is : \n",
+var.f);
+printIEEE(var);
+return 0;
+}
+IEEE 754 representation of 1259.125000 is : 0 | 10001001 | 00111010110010000000000
